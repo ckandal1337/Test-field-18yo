@@ -1,0 +1,80 @@
+<!DOCTYPE html>  
+<html lang="ru">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Проверка совершеннолетия</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            margin: 20px;  
+        }  
+        label {  
+            display: block;  
+            margin: 10px 0 5px;  
+        }  
+        input {  
+            margin-bottom: 15px;  
+        }  
+    </style>  
+</head>  
+<body>  
+
+    <h1>Проверка совершеннолетия</h1>  
+    
+    <form id="age-check-form">  
+        <label for="day">День:</label>  
+        <input type="text" id="day" name="day" required placeholder="День (1-31)">  
+
+        <label for="month">Месяц:</label>  
+        <input type="text" id="month" name="month" required placeholder="Месяц (1-12)">  
+
+        <label for="year">Год:</label>  
+        <input type="text" id="year" name="year" required placeholder="Год (например, 2005)">  
+
+        <button type="submit">Проверить</button>  
+    </form>  
+    
+    <div id="result"></div>  
+
+    <script>  
+  document.getElementById('age-check-form').addEventListener('submit', function(event) {  
+    event.preventDefault(); // Предотвращаем отправку формы  
+
+    // Получаем значения из полей ввода  
+    const dayValue = document.getElementById('day').value;  
+    const monthValue = document.getElementById('month').value;  
+    const yearValue = document.getElementById('year').value;  
+
+    // Преобразуем значения в числа  
+    const day = parseInt(dayValue);  
+    const month = parseInt(monthValue);  
+    const year = parseInt(yearValue);  
+
+    // Проверка на пустые значения и нули  
+    if (!dayValue || !monthValue || !yearValue || day <= 0 || month <= 0 || year <= 0) {  
+        document.getElementById('result').textContent = 'Пожалуйста, заполните все поля корректными значениями (нельзя использовать 0).';  
+        return;  
+    }  
+
+
+    // Расчет возраста  
+    const age = today.getFullYear() - birthDate.getFullYear();  
+    const m = today.getMonth() - birthDate.getMonth();  
+
+    // Учитываем, если день рождения ещё не был в этом году  
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {  
+        age--;  
+    }  
+
+    // Проверка на совершеннолетие  
+    if (age >= 18) {  
+        document.getElementById('result').textContent = 'Вы совершеннолетний.';  
+    } else {  
+        document.getElementById('result').textContent = 'Вы несовершеннолетний.';  
+    }  
+});  
+    </script>  
+
+</body>  
+</html>
