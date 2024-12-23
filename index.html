@@ -69,6 +69,13 @@
         document.getElementById('result').textContent = 'Месяц должен быть в диапазоне от 1 до 12.';  
         return;  
     }  
+	
+ // Установка количества дней в месяце  
+    const daysInMonth = new Date(year, month, 0).getDate(); // Получаем количество дней в месяце  
+    if (day < 1 || day > daysInMonth) {  
+        document.getElementById('result').textContent = `День должен быть в пределах от 1 до ${daysInMonth} для выбранного месяца.`;  
+        return;  
+    }  
 
     // Расчет возраста  
     const age = today.getFullYear() - birthDate.getFullYear();  
