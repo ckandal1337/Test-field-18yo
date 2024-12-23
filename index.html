@@ -57,6 +57,18 @@
         return;  
     }  
 
+// Проверка на корректность диапазона значений  
+    const today = new Date();  
+    const currentYear = today.getFullYear();  
+
+    if (year < currentYear - 120 || year > currentYear) {  
+        document.getElementById('result').textContent = 'Год должен быть в пределах последних 120 лет.';  
+        return;  
+    }  
+    if (month < 1 || month > 12) {  
+        document.getElementById('result').textContent = 'Месяц должен быть в диапазоне от 1 до 12.';  
+        return;  
+    }  
 
     // Расчет возраста  
     const age = today.getFullYear() - birthDate.getFullYear();  
