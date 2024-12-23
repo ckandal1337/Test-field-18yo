@@ -57,6 +57,25 @@
         return;  
     }  
 
+// Проверка на корректность диапазона значений  
+    const today = new Date();  
+    const currentYear = today.getFullYear();  
+
+    if (year < currentYear - 120 || year > currentYear) {  
+        document.getElementById('result').textContent = 'Год должен быть в пределах последних 120 лет.';  
+        return;  
+    }  
+    if (month < 1 || month > 12) {  
+        document.getElementById('result').textContent = 'Месяц должен быть в диапазоне от 1 до 12.';  
+        return;  
+    }  
+	
+ // Установка количества дней в месяце  
+    const daysInMonth = new Date(year, month, 0).getDate(); // Получаем количество дней в месяце  
+    if (day < 1 || day > daysInMonth) {  
+        document.getElementById('result').textContent = `День должен быть в пределах от 1 до ${daysInMonth} для выбранного месяца.`;  
+        return;  
+    }  
 
     // Расчет возраста  
     const age = today.getFullYear() - birthDate.getFullYear();  
@@ -65,6 +84,13 @@
     // Учитываем, если день рождения ещё не был в этом году  
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {  
         age--;  
+    }  
+	
+	    // Проверка на корректность даты  
+    const birthDate = new Date(year, month - 1, day); // Месяцы в JS начинаются с 0  
+    if (isNaN(birthDate.getTime()) || birthDate > today) {  
+        document.getElementById('result').textContent = 'Некорректная дата. Пожалуйста, введите правильную дату.';  
+        return;  
     }  
 
     // Проверка на совершеннолетие  
