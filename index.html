@@ -85,6 +85,13 @@
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {  
         age--;  
     }  
+	
+	    // Проверка на корректность даты  
+    const birthDate = new Date(year, month - 1, day); // Месяцы в JS начинаются с 0  
+    if (isNaN(birthDate.getTime()) || birthDate > today) {  
+        document.getElementById('result').textContent = 'Некорректная дата. Пожалуйста, введите правильную дату.';  
+        return;  
+    }  
 
     // Проверка на совершеннолетие  
     if (age >= 18) {  
